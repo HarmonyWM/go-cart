@@ -1,0 +1,25 @@
+{
+  "shoppingOptimisation": {
+    "enabled": true,
+    "version": "1.0",
+    "availableModes": ["saveMoney", "saveTravel", "saveTime", "bestOverall", "supportLocal"]
+  },
+  "deals": { "enabled": true, "version": "1.0" },
+  "shoppingList": { "enabled": true, "version": "1.0" },
+  "travelCostCalculation": { "enabled": true, "version": "1.0" },
+  "brandSwitching": { "enabled": true, "version": "1.0" },
+  "userPreferences": { "enabled": true, "version": "1.0" },
+  "savedLists": { "enabled": true, "version": "1.0" },
+  "localBusinessSupport": { "enabled": true, "version": "1.0" },
+  "delivery": { "enabled": false, "version": "0.0", "note": "P2 - architecture only" },
+  "loyaltyRewards": { "enabled": false, "version": "0.0", "note": "P2 - future feature" },
+  "priceAlerts": { "enabled": false, "version": "0.0", "note": "P2 - future feature" },
+  "barcodeScanning": { "enabled": false, "version": "0.0", "note": "P2 - future feature" },
+  "aiShoppingAssistant": { "enabled": false, "version": "0.0", "note": "P2 - future feature" },
+  "householdProfiles": { "enabled": false, "version": "0.0", "note": "P2 - future feature" },
+  "sharedFamilyLists": { "enabled": false, "version": "0.0", "note": "P2 - future feature" },
+  "recipeToBasket": { "enabled": false, "version": "0.0", "note": "P2 - future feature" },
+  "communityBuying": { "enabled": false, "version": "0.0", "note": "P2 - future feature" },
+  "subscriptionShopping": { "enabled": false, "version": "0.0", "note": "P2 - future feature" },
+  "personalShopper": { "enabled": false, "version": "0.0", "note": "P2 - future feature" }
+}

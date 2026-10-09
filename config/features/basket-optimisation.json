@@ -1,0 +1,11 @@
+{
+  "maxStoresToConsider": 3,
+  "travelCostWeightSaveMoney": 1.0,
+  "travelCostWeightSaveTravel": 2.5,
+  "travelCostWeightSaveTime": 1.5,
+  "travelCostWeightBestOverall": 1.5,
+  "travelCostWeightSupportLocal": 0.8,
+  "minimumSavingToSuggestExtraStore": 20.00,
+  "budgetWarningThresholdPercent": 90,
+  "budgetCriticalThresholdPercent": 100
+}

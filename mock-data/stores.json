@@ -1,0 +1,8 @@
+[
+  { "id": "shoprite-soweto", "retailerId": "shoprite", "name": "Shoprite Soweto", "address": "Maponya Mall, Klipspruit Valley Rd, Soweto", "lat": -26.2485, "lng": 27.8543, "distanceKm": 4.2, "estimatedShoppingMinutes": 25 },
+  { "id": "checkers-cresta", "retailerId": "checkers", "name": "Checkers Cresta", "address": "Cresta Shopping Centre, Beyers Naudé Dr, Johannesburg", "lat": -26.1367, "lng": 27.9628, "distanceKm": 6.8, "estimatedShoppingMinutes": 20 },
+  { "id": "picknpay-westgate", "retailerId": "picknpay", "name": "Pick n Pay Westgate", "address": "Westgate Mall, Ontdekkers Rd, Roodepoort", "lat": -26.1789, "lng": 27.8912, "distanceKm": 9.1, "estimatedShoppingMinutes": 30 },
+  { "id": "spar-northgate", "retailerId": "spar", "name": "SPAR Northgate", "address": "Northgate Mall, Northumberland Ave, Johannesburg", "lat": -26.1234, "lng": 27.9456, "distanceKm": 11.3, "estimatedShoppingMinutes": 20 },
+  { "id": "woolworths-sandton", "retailerId": "woolworths", "name": "Woolworths Sandton", "address": "Sandton City, 83 Rivonia Rd, Sandton", "lat": -26.1076, "lng": 28.0567, "distanceKm": 18.5, "estimatedShoppingMinutes": 25 },
+  { "id": "local-fresh-diepkloof", "retailerId": "local-fresh", "name": "Fresh Corner Diepkloof", "address": "Diepkloof Zone 2, Soweto", "lat": -26.2312, "lng": 27.8901, "distanceKm": 2.1, "estimatedShoppingMinutes": 15 }
+]

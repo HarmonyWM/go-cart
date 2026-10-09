@@ -1,0 +1,20 @@
+[
+  { "id": "milk-2l", "name": "Full Cream Milk 2L", "category": "dairy", "brand": "Clover", "unit": "2L", "imageUrl": null, "alternatives": ["milk-2l-woolworths", "milk-2l-generic"] },
+  { "id": "milk-2l-generic", "name": "Full Cream Milk 2L", "category": "dairy", "brand": "Farmfresh", "unit": "2L", "imageUrl": null, "alternatives": ["milk-2l"] },
+  { "id": "rice-2kg", "name": "White Rice 2kg", "category": "grains", "brand": "Tastic", "unit": "2kg", "imageUrl": null, "alternatives": ["rice-2kg-generic"] },
+  { "id": "rice-2kg-generic", "name": "White Rice 2kg", "category": "grains", "brand": "No Name", "unit": "2kg", "imageUrl": null, "alternatives": ["rice-2kg"] },
+  { "id": "chicken-whole", "name": "Whole Chicken", "category": "meat", "brand": "Country Fair", "unit": "per kg", "imageUrl": null, "alternatives": [] },
+  { "id": "bread-white", "name": "White Bread 700g", "category": "bakery", "brand": "Albany", "unit": "700g", "imageUrl": null, "alternatives": ["bread-brown"] },
+  { "id": "bread-brown", "name": "Brown Bread 700g", "category": "bakery", "brand": "Albany", "unit": "700g", "imageUrl": null, "alternatives": ["bread-white"] },
+  { "id": "toothpaste-colgate", "name": "Colgate Triple Action 75ml", "category": "toiletries", "brand": "Colgate", "unit": "75ml", "imageUrl": null, "alternatives": ["toothpaste-aquafresh", "toothpaste-generic"] },
+  { "id": "toothpaste-aquafresh", "name": "Aquafresh Triple Protection 75ml", "category": "toiletries", "brand": "Aquafresh", "unit": "75ml", "imageUrl": null, "alternatives": ["toothpaste-colgate", "toothpaste-generic"] },
+  { "id": "toothpaste-generic", "name": "Fresh Smile Toothpaste 75ml", "category": "toiletries", "brand": "Fresh Smile", "unit": "75ml", "imageUrl": null, "alternatives": ["toothpaste-colgate", "toothpaste-aquafresh"] },
+  { "id": "washing-powder-omo", "name": "OMO Auto Washing Powder 2kg", "category": "cleaning", "brand": "OMO", "unit": "2kg", "imageUrl": null, "alternatives": ["washing-powder-surf", "washing-powder-generic"] },
+  { "id": "washing-powder-surf", "name": "Surf Washing Powder 2kg", "category": "cleaning", "brand": "Surf", "unit": "2kg", "imageUrl": null, "alternatives": ["washing-powder-omo", "washing-powder-generic"] },
+  { "id": "washing-powder-generic", "name": "Clean & Fresh Washing Powder 2kg", "category": "cleaning", "brand": "Clean & Fresh", "unit": "2kg", "imageUrl": null, "alternatives": ["washing-powder-omo", "washing-powder-surf"] },
+  { "id": "nappies-pampers", "name": "Pampers Active Baby Size 3 (52 pack)", "category": "baby", "brand": "Pampers", "unit": "52 pack", "imageUrl": null, "alternatives": ["nappies-huggies", "nappies-generic"] },
+  { "id": "nappies-huggies", "name": "Huggies Gold Size 3 (52 pack)", "category": "baby", "brand": "Huggies", "unit": "52 pack", "imageUrl": null, "alternatives": ["nappies-pampers", "nappies-generic"] },
+  { "id": "nappies-generic", "name": "Cuddlers Size 3 (52 pack)", "category": "baby", "brand": "Cuddlers", "unit": "52 pack", "imageUrl": null, "alternatives": ["nappies-pampers", "nappies-huggies"] },
+  { "id": "eggs-6pack", "name": "Free Range Eggs 6 pack", "category": "dairy", "brand": "Nulaid", "unit": "6 pack", "imageUrl": null, "alternatives": [] },
+  { "id": "cooking-oil-2l", "name": "Sunflower Cooking Oil 2L", "category": "pantry", "brand": "Sunfoil", "unit": "2L", "imageUrl": null, "alternatives": [] }
+]

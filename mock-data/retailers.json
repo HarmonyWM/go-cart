@@ -1,0 +1,8 @@
+[
+  { "id": "shoprite", "name": "Shoprite", "logo": "shoprite", "color": "#E31837", "isLocal": false },
+  { "id": "checkers", "name": "Checkers", "logo": "checkers", "color": "#E31837", "isLocal": false },
+  { "id": "picknpay", "name": "Pick n Pay", "logo": "picknpay", "color": "#E31837", "isLocal": false },
+  { "id": "spar", "name": "SPAR", "logo": "spar", "color": "#007A3D", "isLocal": false },
+  { "id": "woolworths", "name": "Woolworths", "logo": "woolworths", "color": "#1A1A1A", "isLocal": false },
+  { "id": "local-fresh", "name": "Fresh Corner", "logo": "local", "color": "#F59E0B", "isLocal": true }
+]

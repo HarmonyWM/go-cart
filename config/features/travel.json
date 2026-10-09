@@ -1,0 +1,12 @@
+{
+  "defaultFuelPricePerLitre": 24.50,
+  "defaultConsumptionLPer100km": 7.2,
+  "defaultFuelType": "petrol95",
+  "transportModes": ["driving", "walking", "publicTransport", "delivery"],
+  "publicTransportEstimatePerKm": 2.50,
+  "walkingSpeedKmh": 5,
+  "drivingSpeedKmh": 40,
+  "publicTransportSpeedKmh": 25,
+  "dataSource": "mock",
+  "dataSourceNote": "Fuel prices and distances are estimates. Real-time data not available in MVP."
+}
