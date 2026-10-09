@@ -38,10 +38,9 @@ const tabs = [
 .bottom-nav {
   position: fixed;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   width: 100%;
-  max-width: 480px;
   height: var(--nav-height);
   background: var(--mm-card);
   border-top: 1px solid var(--mm-border);
