@@ -1,4 +1,6 @@
 {
+  "appName": "MaliMove",
+  "tagline": "Your shopping mission, optimised.",
   "shoppingOptimisation": {
     "enabled": true,
     "version": "1.0",

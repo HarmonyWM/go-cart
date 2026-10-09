@@ -1,4 +1,4 @@
-namespace GoCart.Api.Models;
+namespace MaliMove.Api.Models;
 
 public class Retailer
 {

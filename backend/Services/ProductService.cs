@@ -1,7 +1,7 @@
-using GoCart.Api.DTOs;
-using GoCart.Api.Interfaces;
+using MaliMove.Api.DTOs;
+using MaliMove.Api.Interfaces;
 
-namespace GoCart.Api.Services;
+namespace MaliMove.Api.Services;
 
 public class ProductService : IProductService
 {

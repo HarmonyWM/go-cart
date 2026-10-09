@@ -1,8 +1,8 @@
 using System.Text.Json;
-using GoCart.Api.Interfaces;
-using GoCart.Api.Models;
+using MaliMove.Api.Interfaces;
+using MaliMove.Api.Models;
 
-namespace GoCart.Api.Repositories;
+namespace MaliMove.Api.Repositories;
 
 public class MockDataRepository : IMockDataRepository
 {

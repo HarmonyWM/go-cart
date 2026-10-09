@@ -1,4 +1,4 @@
-namespace GoCart.Api.DTOs;
+namespace MaliMove.Api.DTOs;
 
 public record StoreDto(
     string Id, string RetailerId, string RetailerName, string Name,

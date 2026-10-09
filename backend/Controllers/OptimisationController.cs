@@ -1,8 +1,8 @@
-using GoCart.Api.DTOs;
-using GoCart.Api.Interfaces;
+using MaliMove.Api.DTOs;
+using MaliMove.Api.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GoCart.Api.Controllers;
+namespace MaliMove.Api.Controllers;
 
 [ApiController]
 [Route("api")]

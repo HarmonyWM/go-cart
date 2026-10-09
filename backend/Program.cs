@@ -1,13 +1,13 @@
-using GoCart.Api.Interfaces;
-using GoCart.Api.Repositories;
-using GoCart.Api.Services;
+using MaliMove.Api.Interfaces;
+using MaliMove.Api.Repositories;
+using MaliMove.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("GoCartFrontend", policy =>
+    options.AddPolicy("MaliMoveFrontend", policy =>
         policy.WithOrigins("http://localhost:5173", "http://localhost:3000")
               .AllowAnyHeader()
               .AllowAnyMethod());
@@ -23,7 +23,7 @@ builder.Services.AddScoped<IShoppingOptimisationService, ShoppingOptimisationSer
 
 var app = builder.Build();
 
-app.UseCors("GoCartFrontend");
+app.UseCors("MaliMoveFrontend");
 app.UseAuthorization();
 app.MapControllers();
 

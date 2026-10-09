@@ -1,6 +1,6 @@
-using GoCart.Api.Interfaces;
+using MaliMove.Api.Interfaces;
 
-namespace GoCart.Api.Services;
+namespace MaliMove.Api.Services;
 
 public class TravelCostService : ITravelCostService
 {

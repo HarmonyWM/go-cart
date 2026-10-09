@@ -1,8 +1,8 @@
-using GoCart.Api.DTOs;
-using GoCart.Api.Interfaces;
-using GoCart.Api.Models;
+using MaliMove.Api.DTOs;
+using MaliMove.Api.Interfaces;
+using MaliMove.Api.Models;
 
-namespace GoCart.Api.Services;
+namespace MaliMove.Api.Services;
 
 public class ShoppingOptimisationService : IShoppingOptimisationService
 {
@@ -30,7 +30,6 @@ public class ShoppingOptimisationService : IShoppingOptimisationService
 
         var prefs = request.Preferences;
 
-        // Build effective price lookup: productId+storeId -> best price (deal or regular)
         var effectivePrices = prices.ToDictionary(
             p => $"{p.ProductId}_{p.StoreId}",
             p =>
@@ -39,26 +38,21 @@ public class ShoppingOptimisationService : IShoppingOptimisationService
                 return (price: deal?.DealPrice ?? p.Price, hasDeal: deal != null, originalPrice: p.Price);
             });
 
-        // Generate shopping options
         var options = new List<ShoppingOptionDto>();
 
-        // Option 1: Single best store per priority
         var singleStoreOptions = GenerateSingleStoreOptions(stores, retailers, productMap,
             effectivePrices, request.Items, prefs, retailerMap);
         options.AddRange(singleStoreOptions);
 
-        // Option 2: Multi-store cheapest basket
         var multiStoreOption = GenerateMultiStoreOption(stores, retailers, productMap,
             effectivePrices, request.Items, prefs, retailerMap);
         if (multiStoreOption != null) options.Add(multiStoreOption);
 
         if (!options.Any()) return new OptimisationResultDto(options, null!, "No options available", request.Budget, "unknown");
 
-        // Find baseline (cheapest single store total)
         var baseline = options.Where(o => o.StoreCount == 1).OrderBy(o => o.TotalEstimatedCost).FirstOrDefault();
         var baselineTotal = baseline?.TotalEstimatedCost ?? options.Min(o => o.TotalEstimatedCost);
 
-        // Add savings relative to baseline
         options = options.Select(o => o with
         {
             EstimatedSavings = Math.Max(0, baselineTotal - o.TotalEstimatedCost)
@@ -83,26 +77,28 @@ public class ShoppingOptimisationService : IShoppingOptimisationService
             .Where(s => s.DistanceKm <= prefs.MaxTravelDistanceKm)
             .Select(store =>
             {
+                ShoppingOptionDto? result = null;
                 retailerMap.TryGetValue(store.RetailerId, out var retailer);
                 var basketItems = BuildBasketItems(store.Id, items, productMap, effectivePrices);
-                if (!basketItems.Any()) return null;
-
-                var productTotal = basketItems.Sum(i => i.LineTotal);
-                var travelCost = prefs.TransportMode == "driving"
-                    ? _travelCost.CalculateFuelCost(store.DistanceKm, prefs.VehicleConsumptionLPer100km, prefs.FuelPricePerLitre)
-                    : prefs.TransportMode == "publicTransport" ? (decimal)(store.DistanceKm * 2 * 2.50) : 0m;
-                var travelMinutes = _travelCost.EstimateTravelMinutes(store.DistanceKm, prefs.TransportMode);
-
-                return (ShoppingOptionDto?)new ShoppingOptionDto(
-                    $"single_{store.Id}", store.Name, "🏪",
-                    new List<StoreBasketDto> { new(store.Id, store.Name, retailer?.Name ?? store.RetailerId,
-                        retailer?.Color ?? "#333", basketItems, productTotal, store.DistanceKm, travelCost) },
-                    productTotal, travelCost, 0m, productTotal + travelCost, 1, 0m,
-                    travelMinutes + store.EstimatedShoppingMinutes, store.DistanceKm,
-                    $"Shop everything at {store.Name}", false);
+                if (basketItems.Any())
+                {
+                    var productTotal = basketItems.Sum(i => i.LineTotal);
+                    var travelCost = prefs.TransportMode == "driving"
+                        ? _travelCost.CalculateFuelCost(store.DistanceKm, prefs.VehicleConsumptionLPer100km, prefs.FuelPricePerLitre)
+                        : prefs.TransportMode == "publicTransport" ? (decimal)(store.DistanceKm * 2 * 2.50) : 0m;
+                    var travelMinutes = _travelCost.EstimateTravelMinutes(store.DistanceKm, prefs.TransportMode);
+                    result = new ShoppingOptionDto(
+                        $"single_{store.Id}", store.Name, "🏪",
+                        new List<StoreBasketDto> { new(store.Id, store.Name, retailer?.Name ?? store.RetailerId,
+                            retailer?.Color ?? "#333", basketItems, productTotal, store.DistanceKm, travelCost) },
+                        productTotal, travelCost, 0m, productTotal + travelCost, 1, 0m,
+                        travelMinutes + store.EstimatedShoppingMinutes, store.DistanceKm,
+                        $"Shop everything at {store.Name}", false);
+                }
+                return result;
             })
             .Where(o => o != null)
-            .Select(o => o!.Value)
+            .Select(o => o!)
             .ToList();
     }
 
@@ -111,7 +107,6 @@ public class ShoppingOptimisationService : IShoppingOptimisationService
         Dictionary<string, (decimal price, bool hasDeal, decimal originalPrice)> effectivePrices,
         List<ShoppingListItemDto> items, UserPreferencesDto prefs, Dictionary<string, Retailer> retailerMap)
     {
-        // Assign each item to the cheapest store that stocks it
         var storeBaskets = new Dictionary<string, List<BasketItemDto>>();
         var storeObjects = stores.Where(s => s.DistanceKm <= prefs.MaxTravelDistanceKm)
             .ToDictionary(s => s.Id);
@@ -138,7 +133,7 @@ public class ShoppingOptimisationService : IShoppingOptimisationService
                 ep.hasDeal, ep.hasDeal ? ep.originalPrice : null));
         }
 
-        if (storeBaskets.Count <= 1) return null; // Not a multi-store option
+        if (storeBaskets.Count <= 1) return null;
 
         var storeBasketDtos = storeBaskets.Select(kvp =>
         {
@@ -172,16 +167,18 @@ public class ShoppingOptimisationService : IShoppingOptimisationService
         Dictionary<string, Product> productMap,
         Dictionary<string, (decimal price, bool hasDeal, decimal originalPrice)> effectivePrices)
     {
-        return items.Select(item =>
+        var result = new List<BasketItemDto>();
+        foreach (var item in items)
         {
             var key = $"{item.ProductId}_{storeId}";
-            if (!effectivePrices.TryGetValue(key, out var ep)) return null;
+            if (!effectivePrices.TryGetValue(key, out var ep)) continue;
             productMap.TryGetValue(item.ProductId, out var product);
-            return (BasketItemDto?)new BasketItemDto(
+            result.Add(new BasketItemDto(
                 item.ProductId, item.ProductName.Length > 0 ? item.ProductName : product?.Name ?? item.ProductId,
                 product?.Brand ?? "", item.Quantity, ep.price, ep.price * item.Quantity,
-                ep.hasDeal, ep.hasDeal ? ep.originalPrice : null);
-        }).Where(i => i != null).Select(i => i!.Value).ToList();
+                ep.hasDeal, ep.hasDeal ? ep.originalPrice : null));
+        }
+        return result;
     }
 
     private ShoppingOptionDto SelectRecommendation(List<ShoppingOptionDto> options, string priority,
@@ -236,11 +233,9 @@ public class ShoppingOptimisationService : IShoppingOptimisationService
                 parts.Add($"splitting across {multiStore.StoreCount} stores would save R{Math.Abs(productSaving):F2} on products but cost R{travelExtra:F2} more in travel");
         }
 
-        var reason = parts.Any()
-            ? $"We recommend {recommended.Label} because it {string.Join(" and ", parts)}."
-            : $"We recommend {recommended.Label} as the best match for your {priority} priority.";
-
-        return reason;
+        return parts.Any()
+            ? $"MaliMove recommends {recommended.Label} because it {string.Join(" and ", parts)}."
+            : $"MaliMove recommends {recommended.Label} as the best match for your {priority} priority.";
     }
 
     private static string GetBudgetStatus(decimal total, decimal budget)

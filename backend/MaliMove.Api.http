@@ -1,0 +1,40 @@
+@baseUrl = http://localhost:5000/api
+
+### Get all stores
+GET {{baseUrl}}/stores
+
+### Search products
+GET {{baseUrl}}/products/search?q=milk
+
+### Get all deals
+GET {{baseUrl}}/deals
+
+### Get user preferences
+GET {{baseUrl}}/user/preferences
+
+### Optimise shopping list
+POST {{baseUrl}}/optimisation/calculate
+Content-Type: application/json
+
+{
+  "items": [
+    { "productId": "milk-2l", "productName": "Full Cream Milk 2L", "quantity": 2, "isPurchased": false },
+    { "productId": "rice-2kg", "productName": "White Rice 2kg", "quantity": 1, "isPurchased": false },
+    { "productId": "chicken-whole", "productName": "Whole Chicken", "quantity": 1, "isPurchased": false },
+    { "productId": "toothpaste-colgate", "productName": "Colgate Triple Action 75ml", "quantity": 1, "isPurchased": false },
+    { "productId": "washing-powder-omo", "productName": "OMO Auto Washing Powder 2kg", "quantity": 1, "isPurchased": false },
+    { "productId": "bread-white", "productName": "White Bread 700g", "quantity": 1, "isPurchased": false }
+  ],
+  "budget": 500,
+  "priority": "saveTravel",
+  "preferences": {
+    "preferredStoreIds": [],
+    "maxTravelDistanceKm": 15,
+    "transportMode": "driving",
+    "fuelType": "petrol95",
+    "vehicleConsumptionLPer100km": 7.2,
+    "fuelPricePerLitre": 24.50,
+    "willingToSwitchBrands": true,
+    "defaultPriority": "bestOverall"
+  }
+}

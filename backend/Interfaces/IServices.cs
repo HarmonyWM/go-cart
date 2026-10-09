@@ -1,7 +1,7 @@
-using GoCart.Api.DTOs;
-using GoCart.Api.Models;
+using MaliMove.Api.DTOs;
+using MaliMove.Api.Models;
 
-namespace GoCart.Api.Interfaces;
+namespace MaliMove.Api.Interfaces;
 
 public interface IMockDataRepository
 {

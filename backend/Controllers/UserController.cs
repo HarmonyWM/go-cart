@@ -1,13 +1,12 @@
-using GoCart.Api.DTOs;
+using MaliMove.Api.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GoCart.Api.Controllers;
+namespace MaliMove.Api.Controllers;
 
 [ApiController]
 [Route("api/user")]
 public class UserController : ControllerBase
 {
-    // In-memory for MVP — replace with persistent store in production
     private static UserPreferencesDto _preferences = new(
         PreferredStoreIds: new List<string>(),
         MaxTravelDistanceKm: 15,
