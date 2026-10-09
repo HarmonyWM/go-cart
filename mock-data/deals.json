@@ -11,7 +11,7 @@
     "discountPercent": 51,
     "savingsAmount": 26.99,
     "validFrom": "2025-01-01",
-    "validUntil": "2025-09-20",
+    "validUntil": "2026-12-31",
     "category": "toiletries",
     "isActive": true
   },
@@ -27,7 +27,7 @@
     "discountPercent": 25,
     "savingsAmount": 23.00,
     "validFrom": "2025-01-01",
-    "validUntil": "2025-09-22",
+    "validUntil": "2026-12-31",
     "category": "cleaning",
     "isActive": true
   },
@@ -43,7 +43,7 @@
     "discountPercent": 21,
     "savingsAmount": 7.50,
     "validFrom": "2025-01-01",
-    "validUntil": "2025-09-30",
+    "validUntil": "2026-12-31",
     "category": "grains",
     "isActive": true
   },
@@ -59,7 +59,7 @@
     "discountPercent": 10,
     "savingsAmount": 2.50,
     "validFrom": "2025-01-01",
-    "validUntil": "2025-09-25",
+    "validUntil": "2026-12-31",
     "category": "dairy",
     "isActive": true
   },
@@ -75,7 +75,7 @@
     "discountPercent": 17,
     "savingsAmount": 15.00,
     "validFrom": "2025-01-01",
-    "validUntil": "2025-09-18",
+    "validUntil": "2026-12-31",
     "category": "meat",
     "isActive": true
   },
@@ -91,7 +91,7 @@
     "discountPercent": 15,
     "savingsAmount": 30.00,
     "validFrom": "2025-01-01",
-    "validUntil": "2025-09-21",
+    "validUntil": "2026-12-31",
     "category": "baby",
     "isActive": true
   },
@@ -107,7 +107,7 @@
     "discountPercent": 19,
     "savingsAmount": 3.49,
     "validFrom": "2025-01-01",
-    "validUntil": "2025-09-28",
+    "validUntil": "2026-12-31",
     "category": "bakery",
     "isActive": true
   },
@@ -123,8 +123,40 @@
     "discountPercent": 21,
     "savingsAmount": 5.00,
     "validFrom": "2025-01-01",
-    "validUntil": "2025-09-19",
+    "validUntil": "2026-12-31",
     "category": "dairy",
+    "isActive": true
+  },
+  {
+    "id": "deal-009",
+    "productId": "cooking-oil-2l",
+    "storeId": "shoprite-soweto",
+    "retailerId": "shoprite",
+    "title": "Sunfoil Cooking Oil 2L",
+    "description": "Pantry special",
+    "dealPrice": 41.99,
+    "originalPrice": 49.99,
+    "discountPercent": 16,
+    "savingsAmount": 8.00,
+    "validFrom": "2025-01-01",
+    "validUntil": "2026-12-31",
+    "category": "pantry",
+    "isActive": true
+  },
+  {
+    "id": "deal-010",
+    "productId": "bread-brown",
+    "storeId": "checkers-cresta",
+    "retailerId": "checkers",
+    "title": "Albany Brown Bread 700g",
+    "description": "Health special",
+    "dealPrice": 14.99,
+    "originalPrice": 17.99,
+    "discountPercent": 17,
+    "savingsAmount": 3.00,
+    "validFrom": "2025-01-01",
+    "validUntil": "2026-12-31",
+    "category": "bakery",
     "isActive": true
   }
 ]

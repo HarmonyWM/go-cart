@@ -3,6 +3,16 @@ using MaliMove.Api.Models;
 
 namespace MaliMove.Api.Interfaces;
 
+public interface IOrderService
+{
+    Task<OrderDto> PlaceOrderAsync(PlaceOrderRequest request);
+    Task<OrderDto?> GetOrderAsync(string orderNumber);
+    Task<List<OrderDto>> GetAllOrdersAsync();
+    Task<OrderDto> UpdateStatusAsync(string orderId, OrderStatus status, string message);
+    Task<DemoPaymentResult> ProcessDemoPaymentAsync(DemoPaymentRequest request);
+    Task<OrderDto> ApproveSubstitutionAsync(SubstitutionRequest request);
+}
+
 public interface IMockDataRepository
 {
     Task<List<Retailer>> GetRetailersAsync();

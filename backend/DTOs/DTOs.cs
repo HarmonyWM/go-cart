@@ -1,5 +1,46 @@
 namespace MaliMove.Api.DTOs;
 
+// --- Order DTOs ---
+
+public record OrderItemDto(
+    string ProductId, string ProductName, string Brand, int Quantity,
+    decimal UnitPrice, decimal LineTotal, bool HasDeal, decimal? OriginalPrice,
+    bool IsSubstituted, string? SubstitutionNote);
+
+public record OrderStoreBasketDto(
+    string StoreId, string StoreName, string RetailerName, string Color,
+    List<OrderItemDto> Items, decimal SubTotal, double DistanceKm, decimal TravelCost);
+
+public record DeliveryDetailsDto(
+    string Address, string ContactNumber, string DeliveryWindow, string? DeliveryNotes);
+
+public record OrderStatusEventDto(string Status, string Message, DateTime Timestamp);
+
+public record OrderDto(
+    string Id, string OrderNumber, string Method,
+    List<OrderStoreBasketDto> Baskets,
+    decimal ProductTotal, decimal TravelCost, decimal DeliveryFee,
+    decimal ServiceFee, decimal GrandTotal,
+    DeliveryDetailsDto? Delivery,
+    string Status, string? PaymentStatus,
+    DateTime CreatedAt, List<OrderStatusEventDto> StatusHistory);
+
+public record PlaceOrderRequest(
+    string Method,
+    List<OrderStoreBasketDto> Baskets,
+    decimal ProductTotal, decimal TravelCost, decimal DeliveryFee,
+    decimal ServiceFee, decimal GrandTotal,
+    DeliveryDetailsDto? Delivery);
+
+public record DemoPaymentRequest(string OrderId, string Method);
+
+public record DemoPaymentResult(bool Success, string Reference, string Message);
+
+public record SubstitutionRequest(
+    string OrderId, string ProductId, string SubstitutionNote, decimal NewUnitPrice);
+
+// --- Existing DTOs ---
+
 public record StoreDto(
     string Id, string RetailerId, string RetailerName, string Name,
     string Address, double DistanceKm, int EstimatedShoppingMinutes, bool IsLocal, string Color);

@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { api, type OptimisationResult, type ShoppingOptionDto } from '../services/api'
+import { api, type OptimisationResult } from '../services/api'
 import { useListStore } from '../stores/listStore'
 import { usePrefsStore } from '../stores/prefsStore'
+import { useCheckoutStore } from '../stores/checkoutStore'
 import { useRouter } from 'vue-router'
 
 const listStore = useListStore()
 const prefsStore = usePrefsStore()
+const checkoutStore = useCheckoutStore()
 const router = useRouter()
 
 const result = ref<OptimisationResult | null>(null)
@@ -36,6 +38,11 @@ async function optimise() {
   } finally {
     loading.value = false
   }
+}
+
+function proceedToCheckout(opt: typeof result.value extends null ? never : NonNullable<typeof result.value>['recommended']) {
+  checkoutStore.selectedOption = opt
+  router.push('/checkout/method')
 }
 
 function budgetClass(status: string) {
@@ -175,7 +182,10 @@ const priorityLabels: Record<string, string> = {
         </div>
       </div>
 
-      <button class="btn btn-outline btn-full mt-16" @click="optimise">🔄 Re-optimise</button>
+      <button class="btn btn-primary btn-full mt-12" @click="proceedToCheckout(result.recommended)">
+        🛒 Proceed to Checkout
+      </button>
+      <button class="btn btn-outline btn-full mt-8" @click="optimise">🔄 Re-optimise</button>
     </template>
   </div>
 </template>
@@ -222,5 +232,7 @@ const priorityLabels: Record<string, string> = {
 .basket-subtotal { font-weight: 700; font-size: 14px; }
 .basket-item { display: flex; justify-content: space-between; padding: 6px 12px; font-size: 13px; border-top: 1px solid var(--mm-border); }
 .deal-strike { text-decoration: line-through; color: var(--mm-text-secondary); margin-right: 4px; font-size: 12px; }
+.mt-8 { margin-top: 8px; }
+.mt-12 { margin-top: 12px; }
 .error-card { background: #FFEBEE; color: var(--mm-red); padding: 14px; border-radius: var(--mm-radius); font-size: 14px; }
 </style>

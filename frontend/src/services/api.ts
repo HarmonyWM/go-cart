@@ -83,6 +83,41 @@ export type OptimisationResult = {
   recommendationReason: string; budget?: number; budgetStatus: string
 }
 
+export type OrderItemDto = {
+  productId: string; productName: string; brand: string; quantity: number
+  unitPrice: number; lineTotal: number; hasDeal: boolean; originalPrice?: number
+  isSubstituted: boolean; substitutionNote?: string
+}
+
+export type OrderStoreBasketDto = {
+  storeId: string; storeName: string; retailerName: string; color: string
+  items: OrderItemDto[]; subTotal: number; distanceKm: number; travelCost: number
+}
+
+export type DeliveryDetailsDto = {
+  address: string; contactNumber: string; deliveryWindow: string; deliveryNotes?: string
+}
+
+export type OrderStatusEventDto = { status: string; message: string; timestamp: string }
+
+export type OrderDto = {
+  id: string; orderNumber: string; method: string
+  baskets: OrderStoreBasketDto[]
+  productTotal: number; travelCost: number; deliveryFee: number
+  serviceFee: number; grandTotal: number
+  delivery?: DeliveryDetailsDto
+  status: string; paymentStatus: string
+  createdAt: string; statusHistory: OrderStatusEventDto[]
+}
+
+export type PlaceOrderRequest = {
+  method: string
+  baskets: OrderStoreBasketDto[]
+  productTotal: number; travelCost: number; deliveryFee: number
+  serviceFee: number; grandTotal: number
+  delivery?: DeliveryDetailsDto
+}
+
 export const api = {
   searchProducts: (q: string) =>
     get<ProductSearchResult[]>(`/products/search?q=${encodeURIComponent(q)}`),
@@ -107,4 +142,10 @@ export const api = {
   getPreferences: () => get<UserPreferencesDto>('/user/preferences'),
   savePreferences: (prefs: UserPreferencesDto) =>
     put<UserPreferencesDto>('/user/preferences', prefs),
+  placeOrder: (req: PlaceOrderRequest) => post<OrderDto>('/orders', req),
+  getOrder: (orderNumber: string) => get<OrderDto>(`/orders/${orderNumber}`),
+  demoPayment: (orderId: string, method: string) =>
+    post<{ success: boolean; reference: string; message: string }>('/orders/payment/demo', { orderId, method }),
+  updateOrderStatus: (orderId: string, status: string, message: string) =>
+    post<OrderDto>(`/orders/${orderId}/status`, { status, message }),
 }

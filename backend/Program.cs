@@ -20,6 +20,7 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IDealService, DealService>();
 builder.Services.AddScoped<ITravelCostService, TravelCostService>();
 builder.Services.AddScoped<IShoppingOptimisationService, ShoppingOptimisationService>();
+builder.Services.AddSingleton<IOrderService, OrderService>();
 
 var app = builder.Build();
 
